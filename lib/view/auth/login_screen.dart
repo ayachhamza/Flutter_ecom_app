@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_last/constace.dart';
+import 'package:projet_last/view/widgets/custom_button.dart';
+import 'package:projet_last/view/widgets/custom_button_social.dart';
 import 'package:projet_last/view/widgets/custom_text.dart';
 import 'package:projet_last/view/widgets/custom_text_form_field.dart';
 
@@ -71,6 +73,32 @@ class LoginScreen extends StatelessWidget {
                   fontSize: 14,
                   align: Alignment.topRight,
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                CustomButton(
+                  text: 'Connecter',
+                  onPress: () {},
+                ),
+                SizedBox(height: 44),
+                CustomText(
+                  text: '-OU-',
+                  align: Alignment.center,
+                ),
+                SizedBox(
+                  height: 43,
+                ),
+                CustomButtonSocial(
+                    text: 'Connecter avec Facebook',
+                    imageName: 'assets/images/facebook.png',
+                    onPress: () {}),
+                SizedBox(
+                  height: 20,
+                ),
+                CustomButtonSocial(
+                    text: 'Connecter avec google',
+                    imageName: 'assets/images/google.png',
+                    onPress: () {}),
               ],
             ),
           ),
