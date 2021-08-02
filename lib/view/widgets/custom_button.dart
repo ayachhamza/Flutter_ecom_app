@@ -19,6 +19,7 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: deprecated_member_use
     return FlatButton(
       padding: EdgeInsets.all(18),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
