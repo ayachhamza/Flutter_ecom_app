@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_last/constace.dart';
+import 'package:projet_last/view/auth/second_screen.dart';
 import 'package:projet_last/view/widgets/custom_button.dart';
 import 'package:projet_last/view/widgets/custom_button_social.dart';
 import 'package:projet_last/view/widgets/custom_text.dart';
@@ -78,7 +79,14 @@ class LoginScreen extends StatelessWidget {
                 ),
                 CustomButton(
                   text: 'Connecter',
-                  onPress: () {},
+                  onPress: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SecondScreen(),
+                      ),
+                    );
+                  },
                 ),
                 SizedBox(height: 44),
                 CustomText(
