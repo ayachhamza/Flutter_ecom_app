@@ -5,9 +5,11 @@ class CustomText extends StatelessWidget {
   final double fontSize;
   final Color color;
   final Alignment align;
+  final FontWeight weight;
 
   const CustomText({
     Key? key,
+    this.weight = FontWeight.normal,
     this.align = Alignment.topLeft,
     required this.text,
     this.fontSize = 16,
@@ -23,6 +25,7 @@ class CustomText extends StatelessWidget {
           style: TextStyle(
             color: color,
             fontSize: fontSize,
+            fontWeight: weight,
           ),
         ));
   }
