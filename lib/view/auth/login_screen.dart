@@ -1,113 +1,135 @@
 import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
 import 'package:projet_last/constace.dart';
+import 'package:projet_last/core/view_model/auth_view_model.dart';
 import 'package:projet_last/view/auth/second_screen.dart';
-import 'package:projet_last/view/widgets/custom_button.dart';
+
 import 'package:projet_last/view/widgets/custom_button_social.dart';
+import 'package:projet_last/view/widgets/custom_button.dart';
 import 'package:projet_last/view/widgets/custom_text.dart';
 import 'package:projet_last/view/widgets/custom_text_form_field.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends GetWidget<AuthViewModel> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  String? email, password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromRGBO(250, 250, 250, 1),
       ),
       body: Padding(
         padding: const EdgeInsets.only(
           top: 50,
-          left: 20,
-          right: 20,
+          left: 16,
+          right: 16,
         ),
-        child: Container(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomText(
-                      text: 'Bonjour',
-                      fontSize: 30,
-                    ),
-                    CustomText(
-                      text: 'Authentification',
-                      fontSize: 18,
-                      color: primaryColor2,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                CustomText(
-                  text: 'Authentifier pour continuer',
-                  color: Colors.grey,
-                  fontSize: 14,
-                ),
-                SizedBox(
-                  height: 52,
-                ),
-                CustomTextFormField(
-                    text: 'Email',
-                    hint: 'hamza@gmail.com',
-                    onSave: () {},
-                    validator: () {}),
-                SizedBox(
-                  height: 42,
-                ),
-                CustomTextFormField(
-                    text: 'Mot de passe',
-                    hint: '********',
-                    onSave: () {},
-                    validator: () {}),
-                SizedBox(
-                  height: 20,
-                ),
-                CustomText(
-                  text: 'Mot de passe oblier?',
-                  fontSize: 14,
-                  align: Alignment.topRight,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                CustomButton(
-                  text: 'Connecter',
-                  onPress: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SecondScreen(),
+        child: Form(
+          key: _formKey,
+          child: Container(
+            height: 670,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20), color: Colors.white),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(
+                        text: 'Bonjour,',
+                        fontSize: 33,
+                        weight: FontWeight.bold,
                       ),
-                    );
-                  },
-                ),
-                SizedBox(height: 44),
-                CustomText(
-                  text: '-OU-',
-                  align: Alignment.center,
-                ),
-                SizedBox(
-                  height: 43,
-                ),
-                CustomButtonSocial(
-                    text: 'Connecter avec Facebook',
-                    imageName: 'assets/images/facebook.png',
-                    onPress: () {}),
-                SizedBox(
-                  height: 20,
-                ),
-                CustomButtonSocial(
-                    text: 'Connecter avec google',
-                    imageName: 'assets/images/google.png',
-                    onPress: () {}),
-              ],
+                      CustomText(
+                        text: 'Authentification',
+                        fontSize: 18,
+                        color: primaryColor2,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  CustomText(
+                    text: 'Authentifier pour continuer',
+                    color: Colors.grey,
+                    fontSize: 14,
+                  ),
+                  SizedBox(
+                    height: 52,
+                  ),
+                  CustomTextFormField(
+                      text: 'Email',
+                      hint: 'hamza@gmail.com',
+                      onSave: () {},
+                      validator: () {}),
+                  // TextFormField(
+                  //   onSaved: (value) {
+                  //     email = value;
+                  //   },
+                  //   validator: (value) {},
+                  //   decoration: InputDecoration(
+                  //     hintText: 'test',
+                  //     hintStyle: TextStyle(
+                  //       color: Colors.grey,
+                  //     ),
+                  //     fillColor: Colors.white,
+                  //   ),
+                  // ),
+                  SizedBox(
+                    height: 42,
+                  ),
+                  CustomTextFormField(
+                      text: 'Mot de passe',
+                      hint: '********',
+                      onSave: () {},
+                      validator: () {}),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomText(
+                    text: 'Mot de passe oublier?',
+                    fontSize: 14,
+                    align: Alignment.topRight,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomButton(
+                      text: 'Connecter',
+                      onPress: () {
+                        Get.to(SecondScreen());
+                      }),
+                  SizedBox(height: 44),
+                  CustomText(
+                    text: '-OU-',
+                    align: Alignment.center,
+                  ),
+                  SizedBox(
+                    height: 43,
+                  ),
+                  CustomButtonSocial(
+                      text: 'Connecter avec Facebook',
+                      imageName: 'assets/images/facebook.png',
+                      onPress: () {
+                        // controller.facebookSignInMethode();
+                      }),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  CustomButtonSocial(
+                      text: 'Connecter avec google',
+                      imageName: 'assets/images/google.png',
+                      onPress: () {
+                        controller.googleSignInMethode();
+                      }),
+                ],
+              ),
             ),
           ),
         ),
