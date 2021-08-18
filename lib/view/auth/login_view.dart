@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:projet_last/constace.dart';
 import 'package:projet_last/core/view_model/auth_view_model.dart';
+import 'package:projet_last/view/auth/register_view.dart';
 import 'package:projet_last/view/auth/second_screen.dart';
 
 import 'package:projet_last/view/widgets/custom_button_social.dart';
@@ -10,10 +11,11 @@ import 'package:projet_last/view/widgets/custom_button.dart';
 import 'package:projet_last/view/widgets/custom_text.dart';
 import 'package:projet_last/view/widgets/custom_text_form_field.dart';
 
-class LoginScreen extends GetWidget<AuthViewModel> {
+class LoginView extends GetWidget<AuthViewModel> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
 
-  String? email, password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,10 +47,15 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                         fontSize: 33,
                         weight: FontWeight.bold,
                       ),
-                      CustomText(
-                        text: 'Authentification',
-                        fontSize: 18,
-                        color: primaryColor2,
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(RegisterView());
+                        },
+                        child: CustomText(
+                          text: 'Inscription',
+                          fontSize: 18,
+                          color: primaryColor2,
+                        ),
                       ),
                     ],
                   ),
@@ -66,8 +73,14 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                   CustomTextFormField(
                       text: 'Email',
                       hint: 'hamza@gmail.com',
-                      onSave: () {},
-                      validator: () {}),
+                      onSaved: (value) {
+                        controller.email = value!;
+                      },
+                      validator: (value) {
+                        if (value == null) {
+                          print('ERROR');
+                        }
+                      }),
                   // TextFormField(
                   //   onSaved: (value) {
                   //     email = value;
@@ -84,11 +97,18 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                   SizedBox(
                     height: 42,
                   ),
+
                   CustomTextFormField(
                       text: 'Mot de passe',
                       hint: '********',
-                      onSave: () {},
-                      validator: () {}),
+                      onSaved: (value) {
+                        controller.password = value!;
+                      },
+                      validator: (value) {
+                        if (value == null) {
+                          print('ERROR PASSWORD');
+                        }
+                      }),
                   SizedBox(
                     height: 20,
                   ),
@@ -103,7 +123,11 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                   CustomButton(
                       text: 'Connecter',
                       onPress: () {
-                        Get.to(SecondScreen());
+                        _formKey.currentState!.save();
+                        if (_formKey.currentState!.validate()) {
+                          controller.signInWithEmailAndPassword();
+                          print('valid');
+                        }
                       }),
                   SizedBox(height: 44),
                   CustomText(
