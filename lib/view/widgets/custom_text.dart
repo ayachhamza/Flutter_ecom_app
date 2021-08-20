@@ -4,13 +4,13 @@ class CustomText extends StatelessWidget {
   final String text;
   final double fontSize;
   final Color color;
-  final Alignment align;
+  final Alignment? align;
   final FontWeight weight;
 
-  const CustomText({
+  CustomText({
     Key? key,
     this.weight = FontWeight.normal,
-    this.align = Alignment.topLeft,
+    this.align,
     required this.text,
     this.fontSize = 16,
     this.color = Colors.black,
@@ -19,7 +19,7 @@ class CustomText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        alignment: align,
+        alignment: align == null ? Alignment.topLeft : align,
         child: Text(
           text,
           style: TextStyle(
