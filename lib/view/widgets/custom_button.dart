@@ -8,7 +8,7 @@ class CustomButton extends StatelessWidget {
 
   final Color color;
 
-  final VoidCallback? onPress;
+  final VoidCallback onPress;
 
   CustomButton({
     @required this.onPress,

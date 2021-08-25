@@ -25,7 +25,7 @@ class AuthViewModel extends GetxController {
 
   Rxn<User> _user = Rxn<User>();
 
-  String? get user => _user.value?.email;
+  String get user => _user.value?.email;
   //String? get user => null!.email;
 
   @override
@@ -63,11 +63,11 @@ class AuthViewModel extends GetxController {
   //   }
 
   void googleSignInMethode() async {
-    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     print(googleUser);
 
     GoogleSignInAuthentication googleSignInAuthentication =
-        await googleUser!.authentication;
+        await googleUser.authentication;
 
     final AuthCredential credential = GoogleAuthProvider.credential(
       idToken: googleSignInAuthentication.idToken,

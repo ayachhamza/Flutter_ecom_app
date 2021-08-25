@@ -4,14 +4,14 @@ class CustomText extends StatelessWidget {
   final String text;
   final double fontSize;
   final Color color;
-  final Alignment? align;
+  final Alignment align;
   final FontWeight weight;
 
   CustomText({
-    Key? key,
+    Key key,
     this.weight = FontWeight.normal,
     this.align,
-    required this.text,
+    this.text,
     this.fontSize = 16,
     this.color = Colors.black,
   }) : super(key: key);

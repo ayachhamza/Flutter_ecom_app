@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
 class CartView extends StatelessWidget {
-  const CartView({Key? key}) : super(key: key);
+  const CartView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-      child: Text('hello from cart'),
+      child: Text('cart'),
     ));
+  }
+
+  int yasser(int age) {
+    return age = age + 1;
   }
 }

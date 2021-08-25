@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:projet_last/core/view_model/auth_view_model.dart';
-import 'package:projet_last/core/view_model/home_view_model.dart';
+import 'package:projet_last/core/view_model/control_view_model.dart';
 import 'package:projet_last/view/auth/login_view.dart';
 import 'package:projet_last/view/cart_view.dart';
 import 'package:projet_last/view/home_view.dart';
@@ -14,7 +14,7 @@ class controlView extends StatelessWidget {
     return Obx(() {
       return (Get.find<AuthViewModel>().user == null)
           ? LoginView()
-          : GetBuilder<HomeViewModel>(
+          : GetBuilder<ControlViewModel>(
               builder: (controller) => Scaffold(
                 body: controller.currentScreen,
                 bottomNavigationBar: bottomNavigationBar(),
@@ -24,8 +24,8 @@ class controlView extends StatelessWidget {
   }
 
   Widget bottomNavigationBar() {
-    return GetBuilder<HomeViewModel>(
-      init: HomeViewModel(),
+    return GetBuilder<ControlViewModel>(
+      init: ControlViewModel(),
       builder: (controller) => BottomNavigationBar(
         items: [
           BottomNavigationBarItem(

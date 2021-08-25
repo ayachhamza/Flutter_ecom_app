@@ -1,39 +1,50 @@
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_last/view/cart_view.dart';
-import 'package:projet_last/view/home_view.dart';
-import 'package:projet_last/view/profile_view.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:projet_last/core/service/home_service.dart';
+import 'package:projet_last/model/category_model.dart';
+import 'package:projet_last/model/product_model.dart';
 
 class HomeViewModel extends GetxController {
-  int _navigatorValue = 0;
-  Widget _currentScreen = HomeView();
+  // final CollectionReference _categoryCollectionRef =
+  //     FirebaseFirestore.instance.collection('categories');
 
-  get navigatorValue => _navigatorValue;
+  List<CategoryModel> _categoryModel = [];
+  List<CategoryModel> get categoryModel => _categoryModel;
 
-  get currentScreen => _currentScreen;
+  List<ProductModel> _productModel = [];
+  List<ProductModel> get productModel => _productModel;
 
-  void changeSelectedValue(int selectedValue) {
-    _navigatorValue = selectedValue;
-    switch (selectedValue) {
-      case 0:
-        {
-          _currentScreen = HomeView();
-          break;
-        }
+  ValueNotifier<bool> _loading = ValueNotifier(false);
+  ValueNotifier<bool> get loading => _loading;
 
-      case 1:
-        {
-          _currentScreen = CartView();
-          break;
-        }
+  HomeViewModel() {
+    getCategory();
+    getBestSelling();
+  }
 
-      case 2:
-        {
-          _currentScreen = ProfileView();
-          break;
-        }
-      default:
-    }
-    update();
+  getCategory() async {
+    _loading.value = true;
+    HomeService().getCategory().then((value) {
+      for (int i = 0; i < value.length; i++) {
+        _categoryModel.add(CategoryModel.fromJson(value[i].data()));
+        //print(_categoryModel.length);
+        _loading.value = false;
+      }
+
+      update();
+    });
+  }
+
+  getBestSelling() async {
+    _loading.value = true;
+    HomeService().getBestSelling().then((value) {
+      for (int i = 0; i < value.length; i++) {
+        _productModel.add(ProductModel.fromJson(value[i].data()));
+        print(_productModel.length);
+        _loading.value = false;
+      }
+      update();
+    });
   }
 }

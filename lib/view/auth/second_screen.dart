@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:projet_last/core/view_model/auth_view_model.dart';
 
 class SecondScreen extends StatelessWidget {
-  const SecondScreen({Key? key}) : super(key: key);
+  const SecondScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

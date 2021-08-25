@@ -74,7 +74,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                       text: 'Email',
                       hint: 'hamza@gmail.com',
                       onSaved: (value) {
-                        controller.email = value!;
+                        controller.email = value;
                       },
                       validator: (value) {
                         if (value == null) {
@@ -102,7 +102,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                       text: 'Mot de passe',
                       hint: '********',
                       onSaved: (value) {
-                        controller.password = value!;
+                        controller.password = value;
                       },
                       validator: (value) {
                         if (value == null) {
@@ -123,8 +123,8 @@ class LoginView extends GetWidget<AuthViewModel> {
                   CustomButton(
                       text: 'Connecter',
                       onPress: () {
-                        _formKey.currentState!.save();
-                        if (_formKey.currentState!.validate()) {
+                        _formKey.currentState.save();
+                        if (_formKey.currentState.validate()) {
                           controller.signInWithEmailAndPassword();
                           print('valid');
                         }

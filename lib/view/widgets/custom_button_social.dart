@@ -5,12 +5,12 @@ import 'custom_text.dart';
 class CustomButtonSocial extends StatelessWidget {
   final String text;
   final String imageName;
-  final VoidCallback? onPress;
+  final VoidCallback onPress;
 
   CustomButtonSocial({
-    required this.text,
-    required this.imageName,
-    required this.onPress,
+    this.text,
+    this.imageName,
+    this.onPress,
   });
 
   @override
