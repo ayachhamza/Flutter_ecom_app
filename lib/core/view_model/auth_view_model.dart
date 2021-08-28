@@ -15,18 +15,12 @@ class AuthViewModel extends GetxController {
     'email',
   ]);
 
-  // GoogleSignIn _googleSignIn = GoogleSignIn(
-  //   scopes: [
-  //     'email',
-  //   ],
-  // );
   FirebaseAuth _auth = FirebaseAuth.instance;
   //FacebookLogin _facebookLogin = FacebookLogin();
 
   Rxn<User> _user = Rxn<User>();
 
   String get user => _user.value?.email;
-  //String? get user => null!.email;
 
   @override
   void onInit() {
@@ -43,24 +37,6 @@ class AuthViewModel extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  //for test
-  // Future<String?> signInwithGoogle() async {
-  //   try {
-  //     final GoogleSignInAccount? googleSignInAccount =
-  //         await _googleSignIn.signIn();
-  //     final GoogleSignInAuthentication googleSignInAuthentication =
-  //         await googleSignInAccount!.authentication;
-
-  //     final AuthCredential credential = GoogleAuthProvider.credential(
-  //       accessToken: googleSignInAuthentication.accessToken,
-  //       idToken: googleSignInAuthentication.idToken,
-  //     );
-  //     await _auth.signInWithCredential(credential);
-  //   } on FirebaseAuthException catch (e) {
-  //     print(e.message);
-  //     throw e;
-  //   }
 
   void googleSignInMethode() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();

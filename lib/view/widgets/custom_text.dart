@@ -6,9 +6,11 @@ class CustomText extends StatelessWidget {
   final Color color;
   final Alignment align;
   final FontWeight weight;
+  final double height;
 
   CustomText({
     Key key,
+    this.height = 1,
     this.weight = FontWeight.normal,
     this.align,
     this.text,
@@ -24,6 +26,7 @@ class CustomText extends StatelessWidget {
           text,
           style: TextStyle(
             color: color,
+            height: height,
             fontSize: fontSize,
             fontWeight: weight,
           ),

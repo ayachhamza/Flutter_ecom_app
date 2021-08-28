@@ -10,8 +10,4 @@ class CartView extends StatelessWidget {
       child: Text('cart'),
     ));
   }
-
-  int yasser(int age) {
-    return age = age + 1;
-  }
 }
