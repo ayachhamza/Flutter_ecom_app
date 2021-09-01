@@ -116,7 +116,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
                         _formKey.currentState.save();
                         if (_formKey.currentState.validate()) {
                           controller.createAccountWithEmailAndPassword();
-                          print('valid');
+                          print('emai');
                         }
                       }),
                   SizedBox(height: 44),

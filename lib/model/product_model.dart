@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:projet_last/helper/extenstion.dart';
 
 class ProductModel {
-  String name, image, description, sized, price;
+  String productId, name, image, description, sized, price;
   Color color;
 
   ProductModel(
-      {this.name,
+      {this.productId,
+      this.name,
       this.image,
       this.description,
       this.color,
@@ -23,6 +24,7 @@ class ProductModel {
     color = HexColor.fromHex(map['color']);
     sized = map['sized'];
     price = map['price'];
+    productId = map['productId'];
   }
   toJson() {
     return {
@@ -32,6 +34,7 @@ class ProductModel {
       'color': color,
       'sized': sized,
       'price': price,
+      'productId': productId,
     };
   }
 }

@@ -252,8 +252,12 @@ class HomeView extends StatelessWidget {
     return GetBuilder<HomeViewModel>(
       init: Get.find(),
       builder: (controller) => controller.loading.value
-          ? Center(child: CircularProgressIndicator())
+          ? Center(
+              child: CircularProgressIndicator(
+              color: primaryColor,
+            ))
           : Scaffold(
+              backgroundColor: Colors.white,
               body: SingleChildScrollView(
                 child: Container(
                   padding: EdgeInsets.only(top: 100, left: 20, right: 20),

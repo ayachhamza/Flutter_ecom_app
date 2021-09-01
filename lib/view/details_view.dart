@@ -1,8 +1,12 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/instance_manager.dart';
 import 'package:projet_last/constace.dart';
+import 'package:projet_last/model/cart_product_model.dart';
 import 'package:projet_last/model/product_model.dart';
+import 'package:projet_last/core/view_model/cart_view_model.dart';
 import 'package:projet_last/view/widgets/custom_button.dart';
 import 'package:projet_last/view/widgets/custom_text.dart';
 
@@ -142,13 +146,23 @@ class DetailsScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  Container(
-                    padding: EdgeInsets.all(15),
-                    height: 100,
-                    width: 180,
-                    child: CustomButton(
-                      text: 'AJOUTER',
-                      onPress: () {},
+                  GetBuilder<CartViewModel>(
+                    init: Get.find(),
+                    builder: (controller) => Container(
+                      padding: EdgeInsets.all(15),
+                      height: 100,
+                      width: 180,
+                      child: CustomButton(
+                        text: 'AJOUTER',
+                        onPress: () => controller.addProduct(
+                          CartProductModel(
+                              name: model.name,
+                              image: model.image,
+                              price: model.price,
+                              quantity: 1,
+                              productId: model.productId),
+                        ),
+                      ),
                     ),
                   )
                 ],
