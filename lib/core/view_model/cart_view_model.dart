@@ -58,6 +58,12 @@ class CartViewModel extends GetxController {
     update();
   }
 
+  removeProduct(String productId) async {
+    var dbHelper = CartDatabaseHelper.db;
+    await dbHelper.removeProduct(productId);
+    update();
+  }
+
   icreaseQuantity(int index) async {
     _cartProductModel[index].quantity++;
 

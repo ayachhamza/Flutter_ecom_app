@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,13 +25,16 @@ class AuthViewModel extends GetxController {
 
   Rxn<User> _user = Rxn<User>();
 
-  String get user => _user.value.email;
+  String get user => _user.value?.email;
   final LocalStorageData localStorageData = Get.find();
 
   @override
   void onInit() {
     super.onInit();
     _user.bindStream(_auth.authStateChanges());
+    if (_auth.currentUser != null) {
+      getCurrentUserData(_auth.currentUser.uid);
+    }
   }
 
   @override
@@ -76,9 +81,7 @@ class AuthViewModel extends GetxController {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) async {
-        await FireStoreUser().getCurrentUser(value.user.uid).then((value) {
-          setUser(UserModel.fromJson(value.data()));
-        });
+        getCurrentUserData(value.user.uid);
       });
       Get.offAll(ControlView());
     } catch (e) {
@@ -103,7 +106,7 @@ class AuthViewModel extends GetxController {
         //print(email);
       });
 
-      Get.offAll(LoginView());
+      Get.offAll(ControlView());
     } catch (e) {
       print(e);
       Get.snackbar(
@@ -124,6 +127,12 @@ class AuthViewModel extends GetxController {
     );
     await FireStoreUser().addUserToFirestore(userModel);
     setUser(userModel);
+  }
+
+  void getCurrentUserData(String uid) async {
+    await FireStoreUser().getCurrentUser(uid).then((value) {
+      setUser(UserModel.fromJson(value.data()));
+    });
   }
 
   void setUser(UserModel userModel) async {

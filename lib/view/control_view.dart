@@ -40,7 +40,6 @@ class ControlView extends GetWidget<AuthViewModel> {
         ),
         child: BottomNavigationBar(
           backgroundColor: Colors.white,
-
           items: [
             BottomNavigationBarItem(
                 activeIcon: Padding(

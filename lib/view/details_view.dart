@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:projet_last/constace.dart';
 import 'package:projet_last/model/cart_product_model.dart';
@@ -17,6 +17,7 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         child: Column(
           children: [
@@ -25,7 +26,7 @@ class DetailsScreen extends StatelessWidget {
               height: 270,
               child: Image.network(
                 model.image,
-                fit: BoxFit.fill,
+                fit: BoxFit.fitWidth,
               ),
             ),
             SizedBox(
@@ -34,7 +35,7 @@ class DetailsScreen extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
-                  padding: EdgeInsets.all(18),
+                  padding: EdgeInsets.all(20),
                   child: Column(
                     children: [
                       CustomText(
@@ -106,7 +107,7 @@ class DetailsScreen extends StatelessWidget {
                       CustomText(
                         text: model.description,
                         height: 2.5,
-                        fontSize: 18,
+                        fontSize: 15,
                       )
                     ],
                   ),
@@ -153,16 +154,24 @@ class DetailsScreen extends StatelessWidget {
                       height: 100,
                       width: 180,
                       child: CustomButton(
-                        text: 'AJOUTER',
-                        onPress: () => controller.addProduct(
-                          CartProductModel(
-                              name: model.name,
-                              image: model.image,
-                              price: model.price,
-                              quantity: 1,
-                              productId: model.productId),
-                        ),
-                      ),
+                          text: 'AJOUTER',
+                          onPress: () {
+                            controller.addProduct(
+                              CartProductModel(
+                                  name: model.name,
+                                  image: model.image,
+                                  price: model.price,
+                                  quantity: 1,
+                                  productId: model.productId),
+                            );
+                            Get.snackbar(
+                              "Notification ",
+                              model.name + ' Est ajouter ou panier',
+                              colorText: Colors.black,
+                              backgroundColor: Colors.white,
+                              snackPosition: SnackPosition.BOTTOM,
+                            );
+                          }),
                     ),
                   )
                 ],
